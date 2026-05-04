@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+import { ClerkProvider, SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
+import { Link2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,9 +29,28 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ClerkProvider>
+          <header className="flex justify-between items-center p-4 gap-4 h-16">
+            <Link href="/" className="flex items-center gap-2 font-semibold text-lg">
+              <Link2 className="h-5 w-5" />
+              LinkShortener
+            </Link>
+            <div className="flex items-center gap-4">
+              <Show when="signed-out">
+                <SignInButton mode="modal"><Button variant="ghost">Sign in</Button></SignInButton>
+                <SignUpButton mode="modal"><Button>Sign up</Button></SignUpButton>
+              </Show>
+              <Show when="signed-in">
+                <UserButton />
+              </Show>
+            </div>
+          </header>
+          {children}
+        </ClerkProvider>
+      </body>
     </html>
   );
 }
