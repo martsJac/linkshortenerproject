@@ -79,11 +79,6 @@ export default async function Home() {
               </span>
             </Button>
           </SignUpButton>
-          <SignInButton mode="modal">
-            <Button size="lg" variant="outline">
-              Sign In
-            </Button>
-          </SignInButton>
         </div>
       </section>
 
