@@ -1,6 +1,5 @@
 ---
 description: Read this before implementing or modifying any server actions or data mutations in the project.
-applyTo: "**/actions.ts"
 ---
 
 # Server Actions
