@@ -36,3 +36,6 @@ This is a **URL shortener** application. Users authenticate, submit long URLs, a
 3. All data mutations must go through Server Actions or API route handlers — never mutate from Client Components directly.
 4. All user-owned database operations must be guarded by the authenticated `userId`.
 5. TypeScript strict mode is on — no `any`, no `@ts-ignore` without a documented reason.
+6. **NEVER use `middleware.ts`** — it is deprecated and removed in this version of Next.js. Use `proxy.ts` instead for any logic that would traditionally live in middleware (e.g. auth guards, redirects, request rewriting).
+
+

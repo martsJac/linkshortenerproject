@@ -33,7 +33,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col">
-        <ClerkProvider appearance={{ theme: shadcn }}>
+        <ClerkProvider
+          appearance={{ theme: shadcn }}
+          signInForceRedirectUrl="/dashboard"
+          signUpForceRedirectUrl="/dashboard"
+        >
           <header className="flex justify-between items-center p-4 gap-4 h-16">
             <Link href="/" className="flex items-center gap-2 font-semibold text-lg">
               <Link2 className="h-5 w-5" />
