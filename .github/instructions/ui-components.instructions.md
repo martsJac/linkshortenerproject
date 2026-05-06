@@ -1,3 +1,7 @@
+---
+description: Read this before implementing or modifying any UI components in the project.
+---
+
 # UI Standards — shadcn/ui
 
 All UI in this project is built exclusively with **shadcn/ui** components. Custom components are forbidden.
