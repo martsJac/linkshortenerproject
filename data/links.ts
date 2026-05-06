@@ -44,3 +44,8 @@ export async function updateLink({
 export async function deleteLink({ id, userId }: { id: number; userId: string }) {
   await db.delete(links).where(and(eq(links.id, id), eq(links.userId, userId)))
 }
+
+export async function getLinkByShortCode(shortCode: string) {
+  const [link] = await db.select().from(links).where(eq(links.shortCode, shortCode)).limit(1)
+  return link ?? null
+}
