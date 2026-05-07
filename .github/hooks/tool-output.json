@@ -5,7 +5,7 @@
       {
         "type": "command",
         "shell": "powershell",
-        "command": "$input | & '.github/hooks/format.ps1'"
+        "command": "$input | Set-Content \"tmp/$([DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()).json\""
       }
     ]
   }
