@@ -19,29 +19,29 @@ description: Read this before implementing or modifying any authentication-relat
 ### Homepage redirect (`app/page.tsx`)
 
 ```ts
-import { auth } from '@clerk/nextjs/server'
-import { redirect } from 'next/navigation'
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-const { userId } = await auth()
-if (userId) redirect('/dashboard')
+const { userId } = await auth();
+if (userId) redirect("/dashboard");
 ```
 
 ### Dashboard protection (`proxy.ts`)
 
 ```ts
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
-import { NextResponse } from 'next/server'
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-const isProtectedRoute = createRouteMatcher(['/dashboard(.*)'])
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) {
-    const { userId } = await auth()
+    const { userId } = await auth();
     if (!userId) {
-      return NextResponse.redirect(new URL('/', req.url))
+      return NextResponse.redirect(new URL("/", req.url));
     }
   }
-})
+});
 ```
 
 ## Sign In / Sign Up — Modal Only

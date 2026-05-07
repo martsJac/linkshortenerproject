@@ -1,57 +1,57 @@
-'use client'
+"use client";
 
-import { useState, useTransition } from 'react'
-import { useRouter } from 'next/navigation'
-import { Pencil } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
+import { Pencil } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { updateLinkAction } from './actions'
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { updateLinkAction } from "./actions";
 
 interface EditLinkDialogProps {
   link: {
-    id: number
-    originalUrl: string
-    shortCode: string
-  }
+    id: number;
+    originalUrl: string;
+    shortCode: string;
+  };
 }
 
 export function EditLinkDialog({ link }: EditLinkDialogProps) {
-  const [open, setOpen] = useState(false)
-  const [url, setUrl] = useState(link.originalUrl)
-  const [shortCode, setShortCode] = useState(link.shortCode)
-  const [error, setError] = useState<string | null>(null)
-  const [isPending, startTransition] = useTransition()
-  const router = useRouter()
+  const [open, setOpen] = useState(false);
+  const [url, setUrl] = useState(link.originalUrl);
+  const [shortCode, setShortCode] = useState(link.shortCode);
+  const [error, setError] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   function handleOpenChange(value: boolean) {
-    setOpen(value)
+    setOpen(value);
     if (!value) {
-      setUrl(link.originalUrl)
-      setShortCode(link.shortCode)
-      setError(null)
+      setUrl(link.originalUrl);
+      setShortCode(link.shortCode);
+      setError(null);
     }
   }
 
   function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setError(null)
+    e.preventDefault();
+    setError(null);
     startTransition(async () => {
-      const result = await updateLinkAction({ id: link.id, url, shortCode })
-      if ('error' in result) {
-        setError(result.error ?? 'An unexpected error occurred')
+      const result = await updateLinkAction({ id: link.id, url, shortCode });
+      if ("error" in result) {
+        setError(result.error ?? "An unexpected error occurred");
       } else {
-        setOpen(false)
-        router.refresh()
+        setOpen(false);
+        router.refresh();
       }
-    })
+    });
   }
 
   return (
@@ -89,10 +89,10 @@ export function EditLinkDialog({ link }: EditLinkDialogProps) {
           </div>
           {error && <p className="text-sm text-destructive">{error}</p>}
           <Button type="submit" disabled={isPending}>
-            {isPending ? 'Saving...' : 'Save Changes'}
+            {isPending ? "Saving..." : "Save Changes"}
           </Button>
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

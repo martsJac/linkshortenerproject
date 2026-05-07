@@ -1,18 +1,18 @@
-import { auth } from '@clerk/nextjs/server'
-import { redirect } from 'next/navigation'
-import { getLinksByUserId } from '@/data/links'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { ExternalLink } from 'lucide-react'
-import { CreateLinkDialog } from './create-link-dialog'
-import { EditLinkDialog } from './edit-link-dialog'
-import { DeleteLinkDialog } from './delete-link-dialog'
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { getLinksByUserId } from "@/data/links";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ExternalLink } from "lucide-react";
+import { CreateLinkDialog } from "./create-link-dialog";
+import { EditLinkDialog } from "./edit-link-dialog";
+import { DeleteLinkDialog } from "./delete-link-dialog";
 
 export default async function DashboardPage() {
-  const { userId } = await auth()
-  if (!userId) redirect('/')
+  const { userId } = await auth();
+  if (!userId) redirect("/");
 
-  const links = await getLinksByUserId(userId)
+  const links = await getLinksByUserId(userId);
 
   return (
     <div className="container mx-auto py-8">
@@ -56,5 +56,5 @@ export default async function DashboardPage() {
         </div>
       )}
     </div>
-  )
+  );
 }

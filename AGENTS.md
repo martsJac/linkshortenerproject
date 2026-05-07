@@ -1,7 +1,9 @@
 <!-- BEGIN:nextjs-agent-rules -->
+
 # This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+
 <!-- END:nextjs-agent-rules -->
 
 # Agent Instructions — Link Shortener Project
@@ -24,5 +26,3 @@ This is a **URL shortener** application. Users authenticate, submit long URLs, a
 2. All user-owned database operations must be guarded by the authenticated `userId`.
 3. TypeScript strict mode is on — no `any`, no `@ts-ignore` without a documented reason.
 4. **NEVER use `middleware.ts`** — it is deprecated and removed in this version of Next.js. Use `proxy.ts` instead for any logic that would traditionally live in middleware (e.g. auth guards, redirects, request rewriting).
-
-

@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import { useTransition } from 'react'
-import { useRouter } from 'next/navigation'
-import { Trash2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { useTransition } from "react";
+import { useRouter } from "next/navigation";
+import { Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,25 +14,25 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { deleteLinkAction } from './actions'
+} from "@/components/ui/alert-dialog";
+import { deleteLinkAction } from "./actions";
 
 interface DeleteLinkDialogProps {
   link: {
-    id: number
-    shortCode: string
-  }
+    id: number;
+    shortCode: string;
+  };
 }
 
 export function DeleteLinkDialog({ link }: DeleteLinkDialogProps) {
-  const [isPending, startTransition] = useTransition()
-  const router = useRouter()
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   function handleDelete() {
     startTransition(async () => {
-      await deleteLinkAction({ id: link.id })
-      router.refresh()
-    })
+      await deleteLinkAction({ id: link.id });
+      router.refresh();
+    });
   }
 
   return (
@@ -46,17 +46,18 @@ export function DeleteLinkDialog({ link }: DeleteLinkDialogProps) {
         <AlertDialogHeader>
           <AlertDialogTitle>Delete link?</AlertDialogTitle>
           <AlertDialogDescription>
-            This will permanently delete the short link{' '}
-            <span className="font-medium">/{link.shortCode}</span>. This action cannot be undone.
+            This will permanently delete the short link{" "}
+            <span className="font-medium">/{link.shortCode}</span>. This action
+            cannot be undone.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction onClick={handleDelete} disabled={isPending}>
-            {isPending ? 'Deleting...' : 'Delete'}
+            {isPending ? "Deleting..." : "Delete"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  )
+  );
 }

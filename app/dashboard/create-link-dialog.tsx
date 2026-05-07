@@ -1,51 +1,54 @@
-'use client'
+"use client";
 
-import { useState, useTransition } from 'react'
-import { useRouter } from 'next/navigation'
-import { Plus } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
+import { Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { createLinkAction } from './actions'
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { createLinkAction } from "./actions";
 
 export function CreateLinkDialog() {
-  const [open, setOpen] = useState(false)
-  const [url, setUrl] = useState('')
-  const [shortCode, setShortCode] = useState<string>('')
-  const [error, setError] = useState<string | null>(null)
-  const [isPending, startTransition] = useTransition()
-  const router = useRouter()
+  const [open, setOpen] = useState(false);
+  const [url, setUrl] = useState("");
+  const [shortCode, setShortCode] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   function handleOpenChange(value: boolean) {
-    setOpen(value)
+    setOpen(value);
     if (!value) {
-      setUrl('')
-      setShortCode('')
-      setError(null)
+      setUrl("");
+      setShortCode("");
+      setError(null);
     }
   }
 
   function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setError(null)
+    e.preventDefault();
+    setError(null);
     startTransition(async () => {
-      const result = await createLinkAction({ url, shortCode: shortCode || undefined })
-      if ('error' in result) {
-        setError(result.error ?? 'An unexpected error occurred')
+      const result = await createLinkAction({
+        url,
+        shortCode: shortCode || undefined,
+      });
+      if ("error" in result) {
+        setError(result.error ?? "An unexpected error occurred");
       } else {
-        setOpen(false)
-        setUrl('')
-        setShortCode('')
-        router.refresh()
+        setOpen(false);
+        setUrl("");
+        setShortCode("");
+        router.refresh();
       }
-    })
+    });
   }
 
   return (
@@ -83,10 +86,10 @@ export function CreateLinkDialog() {
           </div>
           {error && <p className="text-sm text-destructive">{error}</p>}
           <Button type="submit" disabled={isPending}>
-            {isPending ? 'Creating...' : 'Create'}
+            {isPending ? "Creating..." : "Create"}
           </Button>
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

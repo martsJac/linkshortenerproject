@@ -4,28 +4,40 @@ import { SignUpButton, SignInButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Link2, BarChart3, Shield, Zap, ArrowRight, Copy, MousePointerClick } from "lucide-react";
+import {
+  Link2,
+  BarChart3,
+  Shield,
+  Zap,
+  ArrowRight,
+  Copy,
+  MousePointerClick,
+} from "lucide-react";
 
 const features = [
   {
     icon: Zap,
     title: "Instant Shortening",
-    description: "Paste any long URL and get a clean, shareable short link in one click.",
+    description:
+      "Paste any long URL and get a clean, shareable short link in one click.",
   },
   {
     icon: BarChart3,
     title: "Click Analytics",
-    description: "Track how many times your links are clicked and measure your reach.",
+    description:
+      "Track how many times your links are clicked and measure your reach.",
   },
   {
     icon: Shield,
     title: "Secure & Private",
-    description: "Your links are tied to your account — only you can manage or delete them.",
+    description:
+      "Your links are tied to your account — only you can manage or delete them.",
   },
   {
     icon: Copy,
     title: "Easy to Share",
-    description: "Copy your short link with a single click and share it anywhere.",
+    description:
+      "Copy your short link with a single click and share it anywhere.",
   },
 ];
 
@@ -85,7 +97,9 @@ export default async function Home() {
       {/* Features */}
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-3">Everything you need</h2>
+          <h2 className="text-3xl font-bold text-center mb-3">
+            Everything you need
+          </h2>
           <p className="text-center text-muted-foreground mb-12">
             A simple, powerful toolkit for managing your links.
           </p>
@@ -97,7 +111,9 @@ export default async function Home() {
                   <CardTitle className="text-base">{feature.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">{feature.description}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {feature.description}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -114,13 +130,18 @@ export default async function Home() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {steps.map((step) => (
-              <div key={step.number} className="flex flex-col items-center text-center gap-3">
+              <div
+                key={step.number}
+                className="flex flex-col items-center text-center gap-3"
+              >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground text-lg font-bold">
                   {step.number}
                 </div>
                 <step.icon className="h-6 w-6 text-muted-foreground" />
                 <h3 className="font-semibold">{step.title}</h3>
-                <p className="text-sm text-muted-foreground">{step.description}</p>
+                <p className="text-sm text-muted-foreground">
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>

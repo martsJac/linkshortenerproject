@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import { ClerkProvider, SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  Show,
+  UserButton,
+} from "@clerk/nextjs";
 import { shadcn } from "@clerk/themes";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
@@ -19,7 +25,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "LinkShortener — Shorten URLs, Share Smarter",
-  description: "Transform long URLs into short, shareable links. Track clicks and manage all your links from one dashboard.",
+  description:
+    "Transform long URLs into short, shareable links. Track clicks and manage all your links from one dashboard.",
 };
 
 export default function RootLayout({
@@ -39,14 +46,21 @@ export default function RootLayout({
           signUpForceRedirectUrl="/dashboard"
         >
           <header className="flex justify-between items-center p-4 gap-4 h-16">
-            <Link href="/" className="flex items-center gap-2 font-semibold text-lg">
+            <Link
+              href="/"
+              className="flex items-center gap-2 font-semibold text-lg"
+            >
               <Link2 className="h-5 w-5" />
               LinkShortener
             </Link>
             <div className="flex items-center gap-4">
               <Show when="signed-out">
-                <SignInButton mode="modal"><Button variant="ghost">Sign in</Button></SignInButton>
-                <SignUpButton mode="modal"><Button>Sign up</Button></SignUpButton>
+                <SignInButton mode="modal">
+                  <Button variant="ghost">Sign in</Button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <Button>Sign up</Button>
+                </SignUpButton>
               </Show>
               <Show when="signed-in">
                 <UserButton />
