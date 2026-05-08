@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "c:\Nuova_cartella\corso github copilot\linkshortenerproject\reports\generate_chart.py", line 4, in <module>
+    import matplotlib.pyplot as plt
+  File "C:\Users\m.iacomino\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\pyplot.py", line 57, in <module>
+    import matplotlib.image
+  File "C:\Users\m.iacomino\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\image.py", line 25, in <module>
+    from matplotlib.backend_bases import FigureCanvasBase
+  File "C:\Users\m.iacomino\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\backend_bases.py", line 49, in <module>
+    from matplotlib import (
+  File "C:\Users\m.iacomino\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\text.py", line 18, in <module>
+    from .textpath import TextPath, TextToPath  # noqa # Logically located here
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\m.iacomino\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\textpath.py", line 12, in <module>
+    from matplotlib.mathtext import MathTextParser
+  File "C:\Users\m.iacomino\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\mathtext.py", line 22, in <module>
+    from matplotlib import _api, _mathtext
+  File "C:\Users\m.iacomino\AppData\Local\Programs\Python\Python312\Lib\site-packages\matplotlib\_mathtext.py", line 69, in <module>
+    class VectorParse(NamedTuple):
+  File "C:\Users\m.iacomino\AppData\Local\Programs\Python\Python312\Lib\typing.py", line 2831, in __new__
+    nm_tpl = _make_nmtuple(typename, types.items(),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\m.iacomino\AppData\Local\Programs\Python\Python312\Lib\typing.py", line 2799, in _make_nmtuple
+    nm_tpl = collections.namedtuple(name, fields,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\m.iacomino\AppData\Local\Programs\Python\Python312\Lib\collections\__init__.py", line 441, in namedtuple
+    __new__ = eval(code, namespace)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 0, in <module>
+KeyboardInterrupt

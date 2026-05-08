@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { links } from "@/db/schema";
-import { and, desc, eq } from "drizzle-orm";
+import { and, count, desc, eq, gte } from "drizzle-orm";
 
 export async function getLinksByUserId(userId: string) {
   return db
@@ -53,6 +53,15 @@ export async function deleteLink({
   userId: string;
 }) {
   await db.delete(links).where(and(eq(links.id, id), eq(links.userId, userId)));
+}
+
+export async function countRecentLinksByUserId(userId: string): Promise<number> {
+  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+  const [result] = await db
+    .select({ count: count() })
+    .from(links)
+    .where(and(eq(links.userId, userId), gte(links.createdAt, oneHourAgo)));
+  return result?.count ?? 0;
 }
 
 export async function getLinkByShortCode(shortCode: string) {

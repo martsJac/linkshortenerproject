@@ -1,0 +1,22 @@
+{
+  "eval_id": 3,
+  "eval_name": "chart-usage-this-year",
+  "prompt": "How many links were created this year? Show me the numbers in a bar graph saved to usage_chart.png.",
+  "assertions": [
+    {
+      "text": "A PNG file is saved at usage_chart.png",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "The chart covers all 12 months (not just the current year, but a rolling 12-month window)",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "The script runs without errors",
+      "passed": null,
+      "evidence": null
+    }
+  ]
+}

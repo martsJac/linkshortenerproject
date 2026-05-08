@@ -1,0 +1,61 @@
+{
+  "skill_name": "links-chart",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Can you show me a chart of how many links have been created each month over the last year? Save it as links_per_month.png in the project root.",
+      "expected_output": "A PNG bar chart file at links_per_month.png with 12 monthly bars, x-axis showing month labels (e.g. Jun 2025 … May 2026), y-axis showing integer link counts.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "A PNG file is saved at the expected output path",
+          "type": "file_exists"
+        },
+        {
+          "text": "The output file is a valid PNG image (starts with PNG magic bytes)",
+          "type": "file_content"
+        },
+        {
+          "text": "The script runs without Python errors (no traceback in stdout/stderr)",
+          "type": "no_error"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Generate a monthly bar chart of link creation activity using the database in .env and export it as a PNG to the path reports/link_activity.png.",
+      "expected_output": "A PNG file at reports/link_activity.png showing 12 monthly bars. The reports/ directory is created if it did not exist.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "A PNG file exists at reports/link_activity.png",
+          "type": "file_exists"
+        },
+        {
+          "text": "The reports/ directory was created",
+          "type": "directory_exists"
+        },
+        {
+          "text": "Script output confirms the path where the chart was saved",
+          "type": "stdout_contains_path"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "How many links were created this year? Show me the numbers in a bar graph saved to usage_chart.png.",
+      "expected_output": "A PNG bar chart at usage_chart.png covering the past 12 months. Even if link counts are 0 for many months, all 12 bars should be present.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "A PNG file is saved at usage_chart.png",
+          "type": "file_exists"
+        },
+        {
+          "text": "The chart covers 12 months (not fewer)",
+          "type": "twelve_month_coverage"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "eval_id": 2,
+  "eval_name": "chart-custom-output-path",
+  "prompt": "Generate a monthly bar chart of link creation activity using the database in .env and export it as a PNG to the path reports/link_activity.png.",
+  "assertions": [
+    {
+      "text": "A PNG file exists at reports/link_activity.png",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "The reports/ directory was created if it did not already exist",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "Script output confirms the absolute path where the chart was saved",
+      "passed": null,
+      "evidence": null
+    }
+  ]
+}

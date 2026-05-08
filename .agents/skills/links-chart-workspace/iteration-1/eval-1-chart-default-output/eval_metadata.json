@@ -1,0 +1,22 @@
+{
+  "eval_id": 1,
+  "eval_name": "chart-default-output",
+  "prompt": "Can you show me a chart of how many links have been created each month over the last year? Save it as links_per_month.png in the project root.",
+  "assertions": [
+    {
+      "text": "A PNG file named links_per_month.png is saved at the expected output path",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "The output file is a valid PNG image (starts with PNG magic bytes \\x89PNG)",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "The script runs without errors (no Python traceback in stdout/stderr)",
+      "passed": null,
+      "evidence": null
+    }
+  ]
+}

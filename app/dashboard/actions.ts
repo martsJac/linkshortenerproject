@@ -3,10 +3,26 @@
 import { z } from "zod";
 import { auth } from "@clerk/nextjs/server";
 import { nanoid } from "nanoid";
-import { createLink, updateLink, deleteLink } from "@/data/links";
+import { createLink, updateLink, deleteLink, countRecentLinksByUserId } from "@/data/links";
+
+const RESERVED_SHORT_CODES = new Set([
+  "dashboard", "api", "l", "login", "signup", "register",
+  "admin", "settings", "account", "profile", "help", "about",
+  "terms", "privacy", "contact", "home", "index",
+]);
 
 const schema = z.object({
-  url: z.string().url(),
+  url: z.string().url().refine(
+    (url) => {
+      try {
+        const { protocol } = new URL(url);
+        return protocol === "http:" || protocol === "https:";
+      } catch {
+        return false;
+      }
+    },
+    { message: "Only http and https URLs are allowed" }
+  ),
   shortCode: z
     .string()
     .min(2)
@@ -14,19 +30,37 @@ const schema = z.object({
     .regex(/^[a-zA-Z0-9_-]+$/, {
       message: "Only letters, numbers, hyphens, and underscores are allowed",
     })
+    .refine(
+      (code) => !RESERVED_SHORT_CODES.has(code.toLowerCase()),
+      { message: "This short code is reserved and cannot be used" }
+    )
     .optional(),
 });
 
 const updateSchema = z.object({
   id: z.number().int().positive(),
-  url: z.string().url(),
+  url: z.string().url().refine(
+    (url) => {
+      try {
+        const { protocol } = new URL(url);
+        return protocol === "http:" || protocol === "https:";
+      } catch {
+        return false;
+      }
+    },
+    { message: "Only http and https URLs are allowed" }
+  ),
   shortCode: z
     .string()
     .min(2)
     .max(20)
     .regex(/^[a-zA-Z0-9_-]+$/, {
       message: "Only letters, numbers, hyphens, and underscores are allowed",
-    }),
+    })
+    .refine(
+      (code) => !RESERVED_SHORT_CODES.has(code.toLowerCase()),
+      { message: "This short code is reserved and cannot be used" }
+    ),
 });
 
 export async function createLinkAction(input: {
@@ -35,6 +69,11 @@ export async function createLinkAction(input: {
 }) {
   const { userId } = await auth();
   if (!userId) return { error: "Unauthorized" };
+
+  const recentCount = await countRecentLinksByUserId(userId);
+  if (recentCount >= 10) {
+    return { error: "Rate limit exceeded. You can create at most 10 links per hour." };
+  }
 
   const parsed = schema.safeParse(input);
   if (!parsed.success) return { error: parsed.error.issues[0].message };

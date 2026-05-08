@@ -1,0 +1,25 @@
+{
+  "expectations": [
+    {
+      "text": "A PNG file is saved at usage_chart.png",
+      "passed": true,
+      "evidence": "PNG exists at c:\\Nuova_cartella\\corso github copilot\\linkshortenerproject\\.agents\\skills\\links-chart-workspace\\iteration-1\\eval-3-chart-usage-this-year\\without_skill\\outputs\\usage_chart.png: True"
+    },
+    {
+      "text": "The chart covers all 12 months (rolling 12-month window)",
+      "passed": true,
+      "evidence": "12-month coverage evidence: True"
+    },
+    {
+      "text": "The script runs without errors",
+      "passed": true,
+      "evidence": "No Traceback: True"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  }
+}
